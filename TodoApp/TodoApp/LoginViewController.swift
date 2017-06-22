@@ -8,10 +8,13 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, RegistrationDelegate{
     
     @IBOutlet weak var txtFieldUserName: UITextField!
     @IBOutlet weak var txtFieldPassword: UITextField!
+    
+    @IBAction func btnRegistration(_ sender: Any) {
+    }
     
     @IBAction func btnLogIn(_ sender: UIButton) {
         // LoginManager
@@ -50,6 +53,18 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func userData(data: String) {
+        txtFieldUserName.text = data
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showRegistrationScreen"{
+            let registrationViewController: RegistrationViewController = segue.destination as! RegistrationViewController
+                registrationViewController.delegate = self
+    }
+    
+
+    
     /*
      // MARK: - Navigation
      
@@ -72,4 +87,5 @@ class LoginViewController: UIViewController {
      return false
      }
      */
+    }
 }
